@@ -69,9 +69,8 @@ docs/contrato-api.md          acuerdo con el frontend: endpoints, JSON, permisos
 
 ## Migraciones (Flyway)
 
-- Cada frente usa su rango: **Ghislane V10, V11…** · **Kevin V20, V21…** · **Benjamín V30, V31…** (V1 es la base común).
+- Cada frente usa su rango.
 - Nombre: `V10__descripcion_corta.sql` (dos guiones bajos) dentro de `src/main/resources/db/migration`.
-- Una migración que ya se subió a GitHub **no se edita**: los cambios van en una versión nueva.
 - Si Flyway se queja en tu computador, borra la base local y vuelve a crearla:
   `docker compose down -v` y luego `docker compose up -d`.
 
