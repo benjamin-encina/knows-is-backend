@@ -1,0 +1,36 @@
+spring:
+  application:
+    name: knows-is-backend
+  config:
+    # Lee las variables desde un archivo ".env" (si existe) en la carpeta del proyecto
+    import: optional:file:.env[.properties]
+  datasource:
+    url: ${DB_URL:jdbc:mysql://localhost:3306/knowsis?useSSL=false&allowPublicKeyRetrieval=true}
+    username: ${DB_USER:knowsis}
+    password: ${DB_PASSWORD:knowsis}
+  jpa:
+    hibernate:
+      # El esquema lo crea Flyway (carpeta db/migration). Hibernate no toca las tablas.
+      ddl-auto: none
+    open-in-view: false
+  flyway:
+    enabled: true
+    locations: classpath:db/migration
+    # Cada frente usa su propio rango de versiones (V10, V20, V30...): permite aplicarlas en cualquier orden
+    out-of-order: true
+
+server:
+  port: 8080
+
+springdoc:
+  swagger-ui:
+    path: /swagger-ui.html
+
+app:
+  cors:
+    allowed-origins: ${CORS_ORIGINS:http://localhost:5173}
+  jwt:
+    # Sin valor por defecto a propósito: la clave nunca se escribe en el código
+    secret: ${JWT_SECRET}
+    access-expiration-minutes: 15
+    refresh-expiration-days: 7

@@ -1,0 +1,6 @@
+# Normaliza los saltos de línea entre Windows y Linux/Mac
+* text=auto
+mvnw text eol=lf
+*.sh text eol=lf
+*.cmd text eol=crlf
+*.bat text eol=crlf
