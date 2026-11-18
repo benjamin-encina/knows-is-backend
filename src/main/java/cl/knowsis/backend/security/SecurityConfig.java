@@ -1,6 +1,7 @@
 package cl.knowsis.backend.security;
 
 import org.springframework.context.annotation.Bean;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -28,7 +29,8 @@ import org.springframework.web.cors.CorsConfigurationSource;
 public class SecurityConfig {
 
     @Bean
-    public SecurityFilterChain filterChain(HttpSecurity http, CorsConfigurationSource cors) throws Exception {
+    public SecurityFilterChain filterChain(HttpSecurity http,
+                                           @Qualifier("corsConfigurationSource") CorsConfigurationSource cors) throws Exception {
         http
                 .csrf(csrf -> csrf.disable())            // API stateless con JWT: no usa cookies de sesión
                 .cors(c -> c.configurationSource(cors))
