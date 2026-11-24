@@ -28,6 +28,7 @@ import org.springframework.web.servlet.resource.NoResourceFoundException;
  *   throw RecursoNoEncontradoException.de("Curso", id);            → 404
  *   throw new ConflictoException("Ya existe un curso con ese código"); → 409
  *   throw new ReglaNegocioException("El pago fue rechazado");        → 422
+ *   throw new DatosInvalidosException("El RUT no es válido");        → 400
  */
 @RestControllerAdvice
 public class GlobalExceptionHandler {
@@ -52,6 +53,11 @@ public class GlobalExceptionHandler {
     }
 
     // ---------------------------------------------------------------- validación (400)
+
+    @ExceptionHandler(DatosInvalidosException.class)
+    public ResponseEntity<ApiError> datosInvalidos(DatosInvalidosException ex, HttpServletRequest req) {
+        return responder(HttpStatus.BAD_REQUEST, ex.getMessage(), req, null);
+    }
 
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public ResponseEntity<ApiError> validacion(MethodArgumentNotValidException ex, HttpServletRequest req) {
