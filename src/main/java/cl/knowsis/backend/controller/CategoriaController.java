@@ -2,6 +2,7 @@ package cl.knowsis.backend.controller;
 
 import cl.knowsis.backend.dto.CategoriaResponse;
 import cl.knowsis.backend.service.CategoriaService;
+import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,6 +22,7 @@ public class CategoriaController {
         this.servicio = servicio;
     }
 
+    @Operation(summary = "Lista las categorías")
     @GetMapping
     public List<CategoriaResponse> listar() {
         return servicio.listar();
