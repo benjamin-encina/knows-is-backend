@@ -74,7 +74,3 @@ docs/contrato-api.md          acuerdo con el frontend: endpoints, JSON, permisos
 - Si Flyway se queja en tu computador, borra la base local y vuelve a crearla:
   `docker compose down -v` y luego `docker compose up -d`.
 
-## Git
-
-Una rama por frente (`feature/cursos`, `feature/auth`, `feature/compras`), commits pequeños, `git pull origin main`
-antes de empezar cada día y Pull Request revisado por otra persona antes de integrar.
